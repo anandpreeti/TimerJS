@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Timer</title>
+	<script type="text/javascript">
+		var ID = 0;
+		var second = 0;
+		var restart = true;
+		function printTime()
+		{
+			document.getElementById("label").style.visibility="visible";
+			document.getElementById("label").innerHTML = second + " seconds";
+			second++;
+		}
+
+		function play()
+		{
+			if(restart == true)
+			{
+				
+				ID = window.setInterval(printTime, 1000);
+			}
+			else
+			{
+
+				window.clearInterval(ID);
+			}	
+
+		}
+
+		function pause()
+		{
+			restart = !(restart);
+			document.getElementById("play").style.visibility = "hidden";
+			play();
+		}
+
+		function stop()
+		{
+			restart = false;
+			document.getElementById("play").style.visibility = "visible";
+			document.getElementById("pause").style.visibility = "hidden";
+			play();
+		}
+
+		function replay()
+		{
+			restart = true;
+			second = 0;			
+			window.clearInterval(ID);
+			play();
+		}
+	</script>
+</head>
+<body>
+	<h1>Timer</h1>
+	<label id="label" style=" visibility: hidden; color:red;">Current Time</label>
+	<table>
+		
+		<tr>
+			<td><button id="play" type="button" onclick="play()">Play</button></td>
+			<td><button id="pause" type="button" onclick="pause()">Pause</button></td>
+			<td><button id="stop" type="button" onclick="stop()">Stop</button></td>
+			<td><button id="stop" type="button" onclick="replay()">Restart</button></td>
+		</tr>
+	</table>
+</body>
+</html>
